@@ -1,7 +1,5 @@
 name: CloudWindows
 
-name: CloudWindows
-
 on: workflow_dispatch
 
 jobs:
