@@ -21,10 +21,10 @@ jobs:
           Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
           Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
           Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
-          Set-LocalUser -Name "i3igli" -Password (ConvertTo-SecureString -AsPlainText "123321Aa" -Force)
+          Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "@#Disala123456" -Force)
     - name: RDP Log In Credentials 
       run: |
           Start-Process ngrok -ArgumentList "tcp --region=in 3389" -NoNewWindow; $ngrokRunning = $false; $maxAttempts = 1; $attempts = 0; while (!$ngrokRunning -and $attempts -lt $maxAttempts) {$ngrokRunning = (Get-Process ngrok -ErrorAction SilentlyContinue) -ne $null; $attempts++ }; if ($ngrokRunning) { $ngrokUrl = (Invoke-RestMethod -Uri "http://localhost:4040/api/tunnels" | Select-Object -ExpandProperty tunnels)[0].public_url; Write-Host "IP: $ngrokUrl" } else { Write-Host "Failed to retrieve NGROK authtoken - check your authtoken again" }
-          Write-Host "Username: i3igli"
-          Write-Host "Password: 123321Aa"
+          Write-Host "Username: runneradmin"
+          Write-Host "Password: @#Disala123456"
           Start-Sleep -Seconds 3600
