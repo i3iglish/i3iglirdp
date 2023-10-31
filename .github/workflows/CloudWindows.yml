@@ -10,7 +10,6 @@ jobs:
     - name: Download Essentials
       run: |
           choco install ngrok -y
-          choco install telegram -y         
           choco install winrar -y
     - name: Connecting To Ngrok
       run: ngrok config add-authtoken $Env:NGROK_AUTH_TOKEN
